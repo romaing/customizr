@@ -52,17 +52,17 @@ class TC_post_navigation {
 
         <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
           <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__); ?>
-            <h3 class="assistive-text"><?php _e( 'Post navigation' , 'customizr' ); ?></h3>
+            <!-- <h3 class="assistive-text"><?php _e( 'Post navigation' , 'customizr' ); ?></h3>  -->
 
             <ul class="pager">
               <?php if ( get_previous_post() != null ) : ?>
                 <li class="previous">
-                  <span class="nav-previous"><?php previous_post_link( '%link' , '<span class="meta-nav">' . _x( '&larr;' , 'Previous post link' , 'customizr' ) . '</span> %title' ); ?></span>
+                  <span class="nav-previous"><?php previous_post_link( '%link' , '<span class="meta-nav fleche-grise-gauche">' . _x( '&larr;' , 'Previous post link' , 'customizr' ) . '</span> %title' ); ?></span>
                 </li>
               <?php endif; ?>
               <?php if ( get_next_post() != null ) : ?>
                 <li class="next">
-                  <span class="nav-next"><?php next_post_link( '%link' , '%title <span class="meta-nav">' . _x( '&rarr;' , 'Next post link' , 'customizr' ) . '</span>' ); ?></span>
+                  <span class="nav-next"><?php next_post_link( '%link' , '%title <span class="meta-nav fleche-grise-droite">' . _x( '&rarr;' , 'Next post link' , 'customizr' ) . '</span>' ); ?></span>
                 </li>
               <?php endif; ?>
             </ul>
@@ -82,7 +82,7 @@ class TC_post_navigation {
               <?php if(get_next_posts_link() != null) : ?>
 
                 <li class="previous">
-                  <span class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts' , 'customizr' ) ); ?></span>
+                  <span class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav fleche-grise-gauche">&larr;</span> Older posts' , 'customizr' ) ); ?></span>
                 </li>
 
               <?php endif; ?>
@@ -90,7 +90,7 @@ class TC_post_navigation {
               <?php if(get_previous_posts_link() != null) : ?>
 
                 <li class="next">
-                  <span class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?></span>
+                  <span class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ) ); ?></span>
                 </li>
 
               <?php endif; ?>

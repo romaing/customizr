@@ -204,7 +204,7 @@ class TC_comments {
               <?php if(get_previous_comments_link() != null) : ?>
 
                 <li class="previous">
-                  <span class="nav-previous"><?php previous_comments_link( __( '<span class="meta-nav">&larr;</span> Older Comments' , 'customizr' ) ); ?></span>
+                  <span class="nav-previous"><?php previous_comments_link( __( '<span class="meta-nav fleche-grise-gauche">&larr;</span> Older Comments' , 'customizr' ) ); ?></span>
                 </li>
 
               <?php endif; ?>
@@ -212,7 +212,7 @@ class TC_comments {
               <?php if(get_next_comments_link() != null) : ?>
 
                 <li class="next">
-                  <span class="nav-next"><?php next_comments_link( __( 'Newer Comments <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?></span>
+                  <span class="nav-next"><?php next_comments_link( __( 'Newer Comments <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ) ); ?></span>
                 </li>
 
               <?php endif; ?>

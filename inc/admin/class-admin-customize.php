@@ -129,6 +129,7 @@ class TC_customize {
 	 */
 	function tc_skin_choices() {
 	    return array( 
+		'docapostcolor.css' 		=> 	__( 'docapostcolor' , 'customizr' ),
 		'blue.css' 		=> 	__( 'Blue' , 'customizr' ),
 		'green.css'  	=> 	__( 'Green' , 'customizr' ),
 		'yellow.css' 	=> 	__( 'Yellow' , 'customizr' ),
@@ -280,7 +281,7 @@ class TC_customize {
 
 								//skin select
 								'tc_theme_options[tc_skin]'			=> array(
-																	'default'		=>	'blue.css' ,
+																	'default'		=>	'docapostcolor.css' ,
 																	'label'			=>	__( 'Choose a predefined skin' , 'customizr' ),
 																	'section'		=>	'tc_skins_settings' ,
 																	'type'			=>	'select' ,
@@ -457,6 +458,16 @@ class TC_customize {
 																	'type'     		=> 'checkbox' ,
 																	'notice'		=> __( 'The images are set with the "featured image" of each pages (in the page edit screen). Uncheck the option above to disable the featured page images.' , 'customizr' ),
 																	'priority'      => 60,
+								),
+								//display featured page images
+								'tc_theme_options[tc_show_featured_pages_readmore]' => array(
+																	'default'       => 1,
+																	'control'		=> 'TC_controls' ,
+																	'label'    		=> __( 'Show read more' , 'customizr' ),
+																	'section'  		=> 'tc_frontpage_settings' ,
+																	'type'     		=> 'checkbox' ,
+																	'notice'		=> __( 'Show read more' , 'customizr' ),
+																	'priority'      => 61,
 								),
 
 								//display featured page images

@@ -75,11 +75,14 @@ class TC_post_metas {
             // Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
             if ( $tag_list ) {
                 $utility_text   = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' );
-                } elseif ( $categories_list ) {
+            } elseif ( $categories_list ) {
                 $utility_text   = __( 'This entry was posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' );
-                } else {
+            } else {
                 $utility_text   = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.' , 'customizr' );
             }
+            //romain
+            // supprime les entry-meta 
+            $utility_text   = "";
 
             printf(
                 $utility_text,

@@ -42,7 +42,8 @@ class TC_breadcrumb {
 	          return;
 	      $args = array(
 	      'container'  => 'div' , // div, nav, p, etc.
-	      'separator'  => '&raquo;' ,
+	      //'separator'  => '&raquo;' ,
+	      'separator'  => '>' ,
 	      'before'     => false,
 	      'after'      => false,
 	      'front_page' => true,
@@ -63,7 +64,8 @@ class TC_breadcrumb {
 	        <div class="tc-hot-crumble container" role="navigation">
 	        <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
 	          <div class="row">
-	            <div class="span12">
+	            <div class="span1"></div> <?php /* romain margue */ ?>
+	            <div class="span11">
 	            <?php $this -> tc_breadcrumb_trail( $args); ?>
 	            </div>
 	          </div>

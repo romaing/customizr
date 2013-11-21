@@ -1,4 +1,44 @@
 <?php
+
+
+
+	add_action('__customizr_styles', 'theme_enqueue_styles');
+	function theme_enqueue_styles() {
+		//wp_enqueue_style('theme-main', get_stylesheet_directory_uri().'/less/docapostcolor.less');
+		
+		wp_enqueue_style('style-docapost', get_stylesheet_directory_uri().'/less/docapost.less');
+		//wp_enqueue_style('style-menu-test', get_stylesheet_directory_uri().'/less/menu-test.less');
+
+	}
+
+
+	add_filter('body_class','homepage_class_names');
+	function homepage_class_names($classes) {
+		// add 'class-name' to the $classes array
+		$classes[]  = is_home() ?"home":"";
+		// return the $classes array
+		return $classes;
+	}
+
+
+	/**
+	 * html5_shiv function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	function html5_shiv() {
+	        ?>
+	        <!-- IE Fix for HTML5 Tags -->
+	        <!--[if lte IE 8]>
+	        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	        <![endif]-->
+	        <?php
+	}
+	if(!is_admin()) {
+	        add_action('wp_head','html5_shiv');
+	}
+
 /**
 * Customizr functions
 * 

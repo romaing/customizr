@@ -40,22 +40,79 @@ class TC_widgets {
                                       'name'                 => __( 'Right Sidebar' , 'customizr' ),
                                       'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
                       ),
+                      'communiques'   => array(
+                                      'name'                 => __( 'communiques Sidebar' , 'customizr' ),
+                                      'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+                      ),
+
+
+                      'footer_menu'   => array(
+                                      'name'                 => __( 'Footer menu' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'footer_signature'   => array(
+                                      'name'                 => __( 'Footer signature' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'slider_home'   => array(
+                                      'name'                 => __( 'home - slider' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+
+
+                      'menu_besoin'    => array(
+                                      'name'                 => __( 'home - menu besoin centre' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'menu_besoin_droit'    => array(
+                                      'name'                 => __( 'home - menu besoin droit' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'menu_besoin_gauche'   => array(
+                                      'name'                 => __( 'home - menu besoin gauche' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'menu_besoin_haut'   => array(
+                                      'name'                 => __( 'home - menu besoin haut' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'menu_besoin_bas'   => array(
+                                      'name'                 => __( 'home - menu besoin (open)' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+
+                      'home_one'    => array(
+                                      'name'                 => __( 'home - One' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'home_two'    => array(
+                                      'name'                 => __( 'home - Two' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'home_three'   => array(
+                                      'name'                 => __( 'home - Three' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+
+
+                      'footer_one'    => array(
+                                      'name'                 => __( 'Footer One' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'footer_two'    => array(
+                                      'name'                 => __( 'Footer Two' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
+                      'footer_three'   => array(
+                                      'name'                 => __( 'Footer Three' , 'customizr' ),
+                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
+                      ),
                       'left'          => array(
                                       'name'                 => __( 'Left Sidebar' , 'customizr' ),
                                       'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
                       ),
-                      'footer_one'    => array(
-                                      'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
-                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
-                      ),
-                      'footer_two'    => array(
-                                      'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
-                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
-                      ),
-                      'footer_three'   => array(
-                                      'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
-                                      'description'          => __( 'Just use it as you want !' , 'customizr' )
-                      ),
+
+
           );
 
           foreach ( $tc_widgets as $id => $infos) {

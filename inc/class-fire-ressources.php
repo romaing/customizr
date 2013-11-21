@@ -108,6 +108,9 @@ class TC_ressources {
 	      //modernizr (must be loaded in wp_head())
 	      wp_enqueue_script( 'modernizr' ,TC_BASE_URL . 'inc/js/modernizr.min.js' ,array( 'jquery' ),null, $in_footer = false);
 
+	      //romain
+	      wp_enqueue_script( 'docapost' ,TC_BASE_URL . 'inc/js/docapost.js' ,array( 'jquery' ),null, $in_footer = false);
+
 	   }
 
 

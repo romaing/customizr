@@ -245,6 +245,12 @@ class TC_utils {
             'b' => 'span6' ,
             'f' => 'span12' ,
             );
+          $class_tab = array(
+            'r' => 'span7' ,
+            'l' => 'span7' ,
+            'b' => 'span5' ,
+            'f' => 'span12' ,
+            );
 
         /* DEFAULT LAYOUTS */
         //get the global default layout

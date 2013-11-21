@@ -32,8 +32,9 @@ class TC_header_main {
         add_action ( '__header' 				, array( $this , 'tc_navbar_display' ) , 30 );
 
         //body > header > navbar actions ordered by priority
-        add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
-        add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+        //add_action ( '__navbar' 				, array( $this , 'tc_social_in_header' ) , 10, 2 );
+        //add_action ( '__navbar' 				, array( $this , 'tc_tagline_display' ) , 20, 1 );
+
     }
 	
 
@@ -142,10 +143,12 @@ class TC_header_main {
        		$logo_img_style			= ( 1 == $logo_resize) ? 'style="max-width:250px;max-height:100px"' : '';
 		?>
 
-	        <div class="brand span3">
-	          <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
-	           <h1><a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' , 'display' ) ); ?> | <?php bloginfo( 'description' ); ?>"><img src="<?php echo $logo_src ?>" alt="<?php _e( 'Back Home' , 'customizr' ); ?>" <?php echo $logo_img_style ?> width="<?php echo $width ?>" height="<?php echo $height ?>"/></a>
-	           </h1>
+	        <div class="container outside">
+		        <div class="brand span3">
+		          <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+		           <h1><a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' , 'display' ) ); ?> | <?php bloginfo( 'description' ); ?>"><img src="<?php echo $logo_src ?>" alt="<?php _e( 'Back Home' , 'customizr' ); ?>" <?php echo $logo_img_style ?> width="<?php echo $width ?>" height="<?php echo $height ?>"/></a>
+		           </h1>
+		        </div>
 	        </div>
 
 	    <?php else : ?>
@@ -177,6 +180,27 @@ class TC_header_main {
 		ob_start();
 
 		?>
+	    <?php uberMenu_easyIntegrate(); ?>
+
+		<?php
+		$html = ob_get_contents();
+       	ob_end_clean();
+       	echo apply_filters( 'tc_navbar_display', $html );
+	}
+
+	/**
+	 * Displays what's inside the navbar of the website. Uses the resp parameter for __navbar action.
+	 *
+	 *
+	 * @package Customizr
+	 * @since Customizr 3.0.10
+	 */
+
+	function tc_navbar_display_old() {
+		tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
+		ob_start();
+
+		?>
 		<?php do_action( 'before_navbar' ); ?>
 
 	      	<div class="navbar-wrapper clearfix span9">
@@ -190,7 +214,7 @@ class TC_header_main {
 	            	</div><!-- /.navbar-inner -->
 	            </div><!-- /.navbar notresp -->
 
-	            <div class="navbar resp">
+	            <div class="navbar resp"> <!-- nav responsive  -->
 	            	<div class="navbar-inner" role="navigation">
 	            		<?php do_action( '__navbar' , 'resp' ); //hook of social, menu, ordered by priorities 10, 20?>
 	            	</div><!-- /.navbar-inner -->

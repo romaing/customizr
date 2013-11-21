@@ -22,12 +22,12 @@
 
 	<?php do_action( '__before_body' ); ?>
 
-	<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+	<body <?php body_class(); ?>  itemscope itemtype="http://schema.org/WebPage">
 		
 		<?php do_action( '__before_header' ); ?>
 
 	   	<header class="tc-header clearfix row-fluid" role="banner">
-			
+
 			<?php do_action( '__header' ); ?>
 
 		</header>

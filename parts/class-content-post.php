@@ -86,7 +86,7 @@ class TC_post {
         <?php 
             $bubble_style                      = ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'';
 
-            printf( '<h1 class="entry-title format-icon">%1$s %2$s %3$s</h1>' ,
+            printf( '<h1 class="entry-title format-icon"><!-- %1$s -->  %2$s %3$s</h1>' ,
             get_the_title(),
             ( comments_open() && get_comments_number() != 0 && !post_password_required() ) ? '<span class="comments-link">
                 <a href="'.get_permalink().'#tc-comment-title" title="'.__( 'Comment(s) on ' , 'customizr' ).get_the_title().'"><span '.$bubble_style.' class="fs1 icon-bubble"></span><span class="inner">'.get_comments_number().'</span></a>
@@ -141,12 +141,13 @@ class TC_post {
               
               <?php do_action( '__before_content' ); ?>
 
-              <?php echo '<hr class="featurette-divider">' ?>
+              <?php /*romain echo '<hr class="featurette-divider">' */ ?>
+              <?php echo '<div class="featurette-divider"></div>'  ?>
 
               <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>    
 
               <section class="entry-content <?php echo $icon_class ?>">
-                  <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
+                  <?php the_content( __( 'Continue reading <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ) ); ?>
                   <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
               </section><!-- .entry-content -->
 
@@ -198,7 +199,7 @@ class TC_post {
 
                         <div class="author-link">
                             <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-                                <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>' , 'customizr' ), get_the_author() ); ?>
+                                <?php printf( __( 'View all posts by %s <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ), get_the_author() ); ?>
                             </a>
                         </div><!-- .author-link -->
                     </div><!-- .author-description -->

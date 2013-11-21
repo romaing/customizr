@@ -50,10 +50,14 @@ class TC_init {
       add_theme_support( 'automatic-feed-links' );
 
       /*  This theme supports nine post formats. */
-      add_theme_support( 'post-formats' , array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
+      //add_theme_support( 'post-formats' , array( 'aside' , 'gallery' , 'link' , 'image' , 'quote' , 'status' , 'video' , 'audio' , 'chat' ) );
+     add_theme_support( 'post-formats' , array( 'aside', 'status' , 'link' , 'quote' ) );
 
       /* This theme uses wp_nav_menu() in one location. */
-      register_nav_menu( 'main' , __( 'Main Menu' , 'customizr' ) );
+      register_nav_menus( array(
+              'main' => __( 'Main Menu' , 'customizr' ),
+              //'Top' => __( 'Navigation Top' , 'customizr' ),
+          ) );
 
       /* This theme uses a custom image size for featured images, displayed on "standard" posts. */
       add_theme_support( 'post-thumbnails' );

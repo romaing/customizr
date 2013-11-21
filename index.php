@@ -9,18 +9,26 @@
 ?>
 <?php do_action( '__before_main_wrapper' ); ##hook of the header with get_header ?>
 <?php tc__f('rec' , __FILE__ , __FUNCTION__ ); ?>
+
+
+
 <div id="main-wrapper" class="container">
 
+
+
+
+
     <?php do_action( '__before_main_container' ); ##hook of the featured page (priority 10) and breadcrumb (priority 20)...and whatever you need! ?>
-    
+
     <div class="container" role="main">
         <div class="row">
 
             <?php do_action( '__before_article_container'); ##hook of left sidebar?>
-                
+
+                <div class="span1 article-container"></div><!--romain marge de 1 -->
                 <div class="<?php echo tc__f( '__screen_layout' , tc__f ( '__ID' ) , 'class' ) ?> article-container">
-                    
-                    <?php do_action ('__before_loop');##hooks the header of the list of post : archive, search... ?>
+
+                    <?php do_action ('__before_loop'); ##hooks the header of the list of post : archive, search... ?>
 
                         <?php if ( tc__f('__is_no_results') || is_404() ) : ##no search results or 404 cases ?>
                             <article <?php tc__f('__article_selectors') ?>>
@@ -40,9 +48,10 @@
 
                         <?php endif; ##end if have posts ?>
 
-                    <?php do_action ('__after_loop');##hook of the comments and the posts navigation with priorities 10 and 20 ?>
+                    <?php do_action ('__after_loop'); ##hook of the comments and the posts navigation with priorities 10 and 20 ?>
 
                 </div><!--.article-container -->
+                <div class="span1 article-container"></div><!--romain marge de 1 -->
 
            <?php do_action( '__after_article_container'); ##hook of left sidebar?>
 

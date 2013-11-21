@@ -28,17 +28,121 @@ class TC_featured_pages {
 
 
     /**
+   * The template displaying the front page featured page block.
+   *
+   *
+   * @package Customizr
+   * @since Customizr 3.0
+   */
+    function tc_fp_block_display() {
+
+
+      global $wp_query;
+      global $post;
+
+      if ( is_singular() || is_404() || (is_search() && 0 == $wp_query -> post_count) )
+        return;
+
+
+        //get display options
+        $tc_show_featured_pages        = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
+        $tc_show_featured_pages_img    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
+
+        //set the areas array
+        $areas = array ( 'one' , 'two' , 'three' );
+
+        ?>
+
+        <?php if ( tc__f('__is_home')  ) : ?>
+
+          <?php tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ ); ?>
+
+          <?php ob_start(); ?>
+
+          <div class="container marketing">
+            <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+
+            <div class="row widget-area" role="complementary">
+
+              
+                <div class="span4 span4-one">
+                  <div class="widget-front home-block2 concave no-margin-top">
+                    <?php dynamic_sidebar( 'home_one' ); ?>
+                  </div>
+                </div><!-- .span4-one-->
+
+                <div class="span4 span4-two">
+                  <div class="widget-front home-block2 concave no-margin-top">
+                    <?php dynamic_sidebar( 'home_two' ); ?>
+                  </div>
+                </div><!-- .span4-two -->
+
+                <div class="span4 span4-three">
+                  <div class="widget-front home-block2 concave no-margin-top">
+                    <?php dynamic_sidebar( 'home_three' ); ?>
+                  </div>
+                </div><!-- .span4-three -->
+
+                <div class="article-home">
+
+                <?php if (have_posts()) : ?>
+                <?php while (have_posts()) : the_post(); ?>
+
+                  <?php 
+                  //display an icon for div if there is no title
+                  $icon_class = in_array(get_post_format(), array(  'quote' , 'aside' , 'status' , 'link' )) ? 'format-icon':'';
+
+                    // Only display Excerpts for lists of posts with format = than quote, status, link, aside 
+                    if ( get_post_format() ) :  
+                    ?>
+
+                      <section id ="article-<?php echo $post->ID ?>" class="entry-content <?php echo $icon_class ?> ">
+                        <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__); ?>
+                         
+                        <h1 ><?php the_title(); ?></h1>
+                        <?php the_content( __( 'Continue reading <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ) ); ?>
+                        <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
+                      </section><!-- .entry-content -->
+
+
+                    <?php 
+                    endif; ?>
+
+
+                  <?php endwhile; ?>
+                  <?php endif; ?>
+
+                </div><!-- .span4 -->
+            
+            </div><!-- .row widget-area -->
+
+          </div><!-- .container -->
+          <?php if ( !tc__f( '__is_home_empty')) : ?>
+             <hr class="featurette-divider">
+          <?php endif; ?>
+
+           <?php
+            $html = ob_get_contents();
+            ob_end_clean();
+            echo apply_filters( 'tc_fp_block_display' , $html );
+            ?>
+
+        <?php endif; ?>
+      <?php
+   }
+
+    /**
 	 * The template displaying the front page featured page block.
 	 *
 	 *
 	 * @package Customizr
 	 * @since Customizr 3.0
 	 */
-    function tc_fp_block_display() {
+    function tc_fp_block_display_old() {
 
     		//get display options
     		$tc_show_featured_pages 	     = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
-    		$tc_show_featured_pages_img    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
+        $tc_show_featured_pages_img    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_img' ) );
 
     		//set the areas array
     		$areas = array ( 'one' , 'two' , 'three' );
@@ -56,13 +160,20 @@ class TC_featured_pages {
 
     				<div class="row widget-area" role="complementary">
 
-    					<?php foreach ( $areas as $area) : ?>
+              <?php foreach ( $areas as $area) : ?>
+                <div class="span4 span4-<?php echo $area ?>">
+                  <?php 
+                    $__options                    = tc__f( '__options' );
+                    $featured_page_id             = esc_attr( $__options['tc_featured_page_'.$area]);
+                  ?>
 
-    						<div class="span4">
-    							<?php do_action('__fp_single' , $area, $tc_show_featured_pages_img);?>
+                  <?php if($featured_page_id != 0 ) : ?>
+    							 <?php do_action('__fp_single' , $area, $tc_show_featured_pages_img);?>
+                  <?php endif; ?>
+
     						</div><!-- .span4 -->
 
-    					<?php endforeach; ?>
+            <?php endforeach; ?>
 
     				</div><!-- .row widget-area -->
 
@@ -95,6 +206,8 @@ class TC_featured_pages {
       */
       function tc_fp_single_display( $area,$show_img) {
 
+        $tc_show_featured_pages_readmore    = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages_readmore' ) );
+
         //if not set
         if ( null == tc__f( '__get_option' , 'tc_featured_page_'.$area ) ) {
             //admin link if user logged in
@@ -116,7 +229,7 @@ class TC_featured_pages {
         }
           
         else {
-              //get saved options
+             //get saved options
               $__options                    = tc__f( '__options' );
               $featured_page_id             = esc_attr( $__options['tc_featured_page_'.$area]);
               $featured_page_link           = get_permalink( $featured_page_id );
@@ -141,6 +254,20 @@ class TC_featured_pages {
                 $text                       = $text;
               }
               
+              //romain
+              // slider caroufredsel = article avec shortcode
+              if ( $area == "one" ) {
+                $text                       =   do_shortcode($page->post_content );
+              }
+              // contatc
+              if ( $area == "two" ) {
+                  $text                       =   html_entity_decode( $__options['tc_featured_text_'.$area] );
+            }
+              // actu
+              if ( $area == "three" ) {
+                  $text                       =   $page->post_content ;
+            }
+
               
             //set the image : uses thumbnail if any then >> the first attached image then >> a holder script
             $tc_thumb_size                  = 'tc-thumb';
@@ -195,11 +322,14 @@ class TC_featured_pages {
               }
           }//end if
 
+
+
+
           //Rendering
           ob_start();
           ?>
 
-          <div class="widget-front">
+          <div class="widget-front home-block2 concave no-margin-top">
             <?php if ( isset( $show_img) && $show_img == 1 ) : //check if image option is checked ?>
 
                 <div class="thumb-wrapper <?php if(!isset( $tc_thumb)) {echo 'tc-holder';} ?>">
@@ -209,14 +339,19 @@ class TC_featured_pages {
 
             <?php endif; ?>
 
-              <h2><?php echo $featured_page_title ?></h2>
-              <p class="fp-text-<?php echo $area ?>"><?php echo $text;  ?></p>
-              <p>
-                 <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__, 'right'); ?>
-                <a class="btn btn-primary fp-button" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>">
-                  <?php echo esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) ?>
-                </a>
-              </p>
+              <h2 class="title"><?php echo $featured_page_title ?></h2>
+              <div class="fp-text-<?php echo $area ?> clearfix"><?php echo $text;  ?></div>
+              <div class="fp-bt-<?php echo $area ?>">
+                <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__, 'right'); ?>
+
+                <?php if($tc_show_featured_pages_readmore): ?>
+                
+                  <a class="btn btn-primary fp-button" href="<?php echo $featured_page_link ?>" title="<?php echo $featured_page_title ?>">
+                    <?php echo esc_attr( tc__f( '__get_option' , 'tc_featured_page_button_text') ) ?>
+                  </a>
+                <?php endif; ?>
+
+              </div>
 
           </div><!-- /.widget-front -->
           

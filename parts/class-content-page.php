@@ -67,21 +67,44 @@ class TC_page {
                         $bubble_style        = ( 0 == get_comments_number() ) ? 'style="color:#ECECEC" ':'';
 
                         $comments_enable     = ( 1 == esc_attr( tc__f( '__get_option' , 'tc_page_comments' )) && comments_open() && get_comments_number() != 0 && !post_password_required() ) ? true : false;
+                        //romain
+                        if( get_the_title() ){
+                            printf( '<h1 class="entry-title format-icon-no"><!-- %1$s --> %2$s %3$s</h1>%4$s' ,
+                                get_the_title(),
+                                $comments_enable ? '<span class="comments-link">
+                                    <a href="'.get_permalink().'#tc-comment-title" title="'.__( 'Comment(s) on ' , 'customizr' ).get_the_title().'"><span '.$bubble_style.' class="fs1 icon-bubble"></span><span class="inner">'.get_comments_number().'</span></a>
+                                </span>' : '',
+                                ((is_user_logged_in()) && current_user_can('edit_pages')) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page' , 'customizr' ).'">'.__( 'Edit page' , 'customizr' ).'</a></span>' : '',
+                                '<div class="featurette-divider"></div>'
+                            ); 
 
-                        printf( '<h1 class="entry-title format-icon">%1$s %2$s %3$s</h1>' ,
-                            get_the_title(),
-                            $comments_enable ? '<span class="comments-link">
-                                <a href="'.get_permalink().'#tc-comment-title" title="'.__( 'Comment(s) on ' , 'customizr' ).get_the_title().'"><span '.$bubble_style.' class="fs1 icon-bubble"></span><span class="inner">'.get_comments_number().'</span></a>
-                            </span>' : '',
-                            ((is_user_logged_in()) && current_user_can('edit_pages')) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page' , 'customizr' ).'">'.__( 'Edit page' , 'customizr' ).'</a></span>' : ''
-                        ); 
-                    ?>
-                    <hr class="featurette-divider">
+                        }elseif( $comments_enable ){
+                            printf( '<h1 class="entry-title">%1$s %2$s</h1>%3$s' ,
+                                $comments_enable ? '<span class="comments-link">
+                                    <a href="'.get_permalink().'#tc-comment-title" title="'.__( 'Comment(s) on ' , 'customizr' ).get_the_title().'"><span '.$bubble_style.' class="fs1 icon-bubble"></span><span class="inner">'.get_comments_number().'</span></a>
+                                </span>' : '',
+                                ((is_user_logged_in()) && current_user_can('edit_pages')) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page' , 'customizr' ).'">'.__( 'Edit page' , 'customizr' ).'</a></span>' : '',
+                                '<div class="featurette-divider"></div>'
+                            ); 
+
+                        }elseif((is_user_logged_in()) && current_user_can('edit_pages')){
+                            printf( '<h1 class="entry-title">%1$s</h1>%2$s' ,
+                                ((is_user_logged_in()) && current_user_can('edit_pages')) ? '<span class="edit-link btn btn-inverse btn-mini"><a class="post-edit-link" href="'.get_edit_post_link().'" title="'.__( 'Edit page' , 'customizr' ).'">'.__( 'Edit page' , 'customizr' ).'</a></span>' : '',
+                                '<hr class="featurette-divider">'
+                            ); 
+
+                        }else{
+                            printf( '<div class="featurette-divider"></div>'); 
+
+                        }
+                        ////
+                     ?>
+                    
                  <?php endif; ?>
             </header>
 
             <div class="entry-content">
-                <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
+                <?php the_content( __( 'Continue reading <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ) ); ?>
             </div>
 
                <?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>

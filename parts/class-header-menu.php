@@ -82,8 +82,9 @@ class TC_menu {
       ?>
 
       <?php ob_start() ?>
-    
       <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+
+
           <?php if ('resp' == $resp) : //resp is an argument of do_action ('__navbar' , 'resp') ?>
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
@@ -93,6 +94,7 @@ class TC_menu {
           <?php endif; ?>
          <div class="nav-collapse collapse">
               <?php wp_nav_menu( array( 'theme_location' => 'main' , 'menu_class' => 'nav' , 'fallback_cb' => array( $this , 'tc_link_to_menu_editor' ) , 'walker' => TC_nav_walker::$instance) );  ?>
+
          </div><!-- /.nav-collapse collapse -->
 
       <?php

@@ -186,7 +186,7 @@ class TC_post_list {
               <?php else : ?>
               
                   <section class="entry-content <?php echo $icon_class ?>">
-                      <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>' , 'customizr' ) ); ?>
+                      <?php the_content( __( 'Continue reading <span class="meta-nav fleche-grise-droite">&rarr;</span>' , 'customizr' ) ); ?>
                       <?php wp_link_pages( array( 'before' => '<div class="pagination pagination-centered">' . __( 'Pages:' , 'customizr' ), 'after' => '</div>' ) ); ?>
                   </section><!-- .entry-content -->
               <?php endif; ?>
@@ -555,7 +555,7 @@ class TC_post_list {
       tc__f('rec' , __FILE__ , __FUNCTION__, __CLASS__ );
       //displays the hr after the title, if we are not on home page or the blog page.
       global $wp_query;
-      $html = ( tc__f('__is_home') || $wp_query -> is_posts_page ) ? '' : '<hr class="featurette-divider">';
+      $html = ( tc__f('__is_home') || $wp_query -> is_posts_page ) ? '' : '<div class="featurette-divider"></div>';
       //$html .= tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ );
       echo apply_filters( 'tc_hr_list_header', $html );
     }

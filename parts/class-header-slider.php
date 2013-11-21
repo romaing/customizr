@@ -22,18 +22,159 @@ class TC_slider {
         self::$instance =& $this;
 
         add_action( '__after_header'                   , array( $this , 'tc_slider_display' ));
+        add_action( '__after_header'                   , array( $this , 'tc_besoin_display' ));
         add_action( 'wp_footer'                        , array( $this , 'tc_slider_footer_options' ),20);
     }
 
-  
-  /**
-   * Displays the slider based on the context : home, post/page.
+ 
+   /**
+   * Displays le menu besoin based on the context : home, post/page.
    * 
    * @package Customizr
    * @since Customizr 1.0
    *
    */
+  
+  function tc_besoin_display() {
+      
+
+      //prevent the main ID override when creating a new query. (only if it is included in the main loop but who knows...)
+      if (is_404() || is_archive() || is_search())
+        return;
+
+      //$tc_show_featured_pages        = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
+
+      //if ( $tc_show_featured_pages  == 0 && tc__f('__is_home')  ) {
+      if ( tc__f('__is_home')  ) {
+
+        //we retrieve the options
+        $__options                    = tc__f( '__options' );
+
+
+
+        ob_start();
+        ?>
+
+
+
+        <div id="zone-besoin-metier" class="zone-besoin-metier">
+          <div class="container ">
+
+
+
+            <div class="row widget-area besoin-haut" role="complementary">
+              <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+
+              <div class="span12">
+              <?php if ( is_active_sidebar( 'menu_besoin_haut' ) ) : ?>
+                <?php dynamic_sidebar( 'menu_besoin_haut' ); ?>
+              <?php endif; ?>
+              </div>
+
+            </div>
+
+            <div class="row widget-area besoin-centre" role="complementary">
+              <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+
+              <div class="span3">
+              <?php if ( is_active_sidebar( 'menu_besoin_gauche' ) ) : ?>
+                <?php dynamic_sidebar( 'menu_besoin_gauche' ); ?>
+              <?php endif; ?>
+              </div>
+              <div class="span6">
+              <?php if ( is_active_sidebar( 'menu_besoin' ) ) : ?>
+                <?php dynamic_sidebar( 'menu_besoin' ); ?>
+              <?php endif; ?>
+              </div>
+              <div class="span3">
+              <?php if ( is_active_sidebar( 'menu_besoin_droit' ) ) : ?>
+                <?php dynamic_sidebar( 'menu_besoin_droit' ); ?>
+              <?php endif; ?>
+              </div>
+
+            </div>
+
+
+
+
+            <div style="display:none">
+              <div id="besoinbas" class="row widget-area besoin-bas" role="complementary">
+
+                <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+
+                <div class="span12">
+                <?php if ( is_active_sidebar( 'menu_besoin_bas' ) ) : ?>
+                  <?php dynamic_sidebar( 'menu_besoin_bas' ); ?>
+                <?php endif; ?>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div><!-- /.menu-besoin -->
+
+        <?php 
+        $html = ob_get_contents();
+        ob_end_clean();
+        echo apply_filters( 'tc_besoin_display', $html );
+      }
+    }
+
+
+  /**
+   * Displays the slider based on the context : home, post/page.
+   *
+   * @package Customizr
+   * @since Customizr 1.0
+   *
+   */
+
   function tc_slider_display() {
+
+
+      //prevent the main ID override when creating a new query. (only if it is included in the main loop but who knows...)
+      if (is_404() || is_archive() || is_search())
+        return;
+
+      //$tc_show_featured_pages        = esc_attr( tc__f( '__get_option' , 'tc_show_featured_pages' ) );
+
+      //if ( $tc_show_featured_pages  == 0 && tc__f('__is_home')  ) {
+      if ( tc__f('__is_home')  ) {
+
+        //we retrieve the options
+        $__options                    = tc__f( '__options' );
+
+        //get slider options if any
+        $layout_value               = $__options['tc_slider_width'];
+
+        $layout_class                 = '';
+        $img_size                     = 'slider';
+
+        if ( $layout_value == 0) {//if boxed slider is checked
+          $layout_class               = 'container';
+          $img_size                   = 'slider';
+        }
+
+
+        ob_start();
+        ?>
+        <div id="customizr-slider" class="<?php echo $layout_class ?> carousel slide">
+          <?php tc__f( 'tip' , __FUNCTION__ , __CLASS__, __FILE__ ); ?>
+            <?php if ( is_active_sidebar( 'slider_home' ) ) : ?>
+              <?php dynamic_sidebar( 'slider_home' ); ?>
+            <?php endif; ?>
+        </div><!-- /.slide -->
+        <?php 
+        $html = ob_get_contents();
+        ob_end_clean();
+        echo apply_filters( 'tc_slider_display', $html );
+      }
+    }
+
+           
+  function tc_slider_display_old() {
       
 
       //prevent the main ID override when creating a new query. (only if it is included in the main loop but who knows...)
